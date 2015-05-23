@@ -496,7 +496,9 @@ header h2 {
 #main-content img {
   max-width: 100%;
 }
-
+img.avatar {
+  border-radius: 84%;
+}
 aside#sidebar {
   float: right;
   width: 200px;
@@ -562,13 +564,12 @@ pre {
   padding: 20px;
   overflow: auto;
   text-shadow: none;
-  background: #fff;
-  border: solid 1px #f2f2f2;
+  background: #F4F4F4;
+  border: solid 1px #C3BFBF;
 }
 pre code {
   padding: 0;
   color: #2879d0;
-  background-color: #fff;
   border: none;
 }
 
