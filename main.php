@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Fantazy Sidebar | Wordpress floating sidebar
-Plugin URI: https://github.com/Jakiboy/Fantazy-Sidebar
+Plugin URI: http://jakiboy.github.io/Fantazy-Sidebar/
 Description: Makes wordpress's sidebar floatable, compatible with version <a href="https://fr.wordpress.org/">4.2.2</a>
 Version: 1.5
 Author: JIHAD SINNAOUR
@@ -99,8 +99,7 @@ if ( !is_admin() ) {
     wp_enqueue_script('wp-fantazy-sidebar');
     }
     add_action( 'wp_enqueue_scripts', 'fantazySidebarRun' );
-    //add_action('wp_footer','fsStartApp');
     $option=fsGetOptions();
-    add_action( ($option['jsInHead']?'wp_head':'wp_footer') , 'fsStartApp');
+    add_action('wp_footer','fsStartApp');
 }
 else{add_action('admin_menu', 'fsMenuSettings');}
