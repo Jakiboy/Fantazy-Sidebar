@@ -15,14 +15,15 @@ License: GPL2
 */
 function fsGlobals(){
     return array(
-        'contentID'=>'#content',  // Base of page's height, for #sidebar
-        'sidebarID'=>'#sidebar', // Wordpress sidbare's ID
-        'waitingTime'=>2000,    // Time before moving sidebar
-        'debounce'=>500,       // Sidebar limits
-        'animate'=>500,       // Animation duration
-        'offsetTop'=>0,      // Margin top
-        'offsetBottom'=>0,  // Margin bottom
-        'minHDiff'=>0      // Min height difference
+        'contentID'=>'#content',             // Base of page's height, for #sidebar
+        'sidebarID'=>'#sidebar',            // Wordpress sidbare's ID
+        'waitingTime'=>2000,               // Time before moving sidebar
+        'debounce'=>500,                  // Sidebar limits
+        'animate'=>500,                  // Animation duration
+        'offsetTop'=>0,                 // Margin top
+        'offsetBottom'=>0,             // Margin bottom
+        'minHDiff'=>0,                // Min height difference
+        'disableOnSmallerThan'=> 0   // Disable plugin if the initial width of browser is smaller than this value... 
     );
 }
 function fsGetOptions(){
@@ -43,7 +44,7 @@ function fsMenuSettings(){
 function fsSettingsInput($name, $value, $label, $cls='regular-text'){
     $data ='   <tr>';
     $data.='    <th><label for="wp-fantazy-sidebar-'.$name.'">'.$label.'</label></th>';
-	$data.='   </tr><tr>';
+    $data.='   </tr><tr>';
     $data.='    <td><input class="'.$cls.'" id="wp-fantazy-sidebar-'.$name.'" name="wp-fantazy-sidebar-'.$name.'" value="'.$value.'"></td>';
     $data.='   </tr>';
     return $data;
@@ -67,23 +68,25 @@ function fsSettings(){
     $data.='<form id="wp-fantazy-sidebar-form" name="wp-fantazy-sidebar-form" method="post" action="">';
     $data.='<input id="wp-fantazy-sidebar" name="wp-fantazy-sidebar" type="hidden" value="1">';
     $data.='<table class="form-table">';
-	$data.=fsSettingsInput('contentID',$contentID,
-	'<b>Content Selector</b>');
+    $data.=fsSettingsInput('contentID',$contentID,
+    '<b>Content Selector</b>');
     $data.=fsSettingsInput('sidebarID',$sidebarID,
-	'<b>Sidebar Selector</b>');
-	$data.=fsSettingsInput('waitingTime',$waitingTime,
-	'<b>Wait</b> Milliseconds Before Activation, after page has loaded','small-text');
+    '<b>Sidebar Selector</b>');
+    $data.=fsSettingsInput('waitingTime',$waitingTime,
+    '<b>Wait</b> Milliseconds Before Activation, after page has loaded','small-text');
     $data.=fsSettingsInput('debounce',$debounce,
-	'Milliseconds Of <b>Inactivity Before Every Reposition</b>. '.
-	'Sidebar will start moving only after this time from when the user has stopped scrolling up or down','small-text');
+    'Milliseconds Of <b>Inactivity Before Every Reposition</b>. '.
+    'Sidebar will start moving only after this time from when the user has stopped scrolling up or down','small-text');
     $data.=fsSettingsInput('animate',$animate,
-	'<b>Animate Speed</b> in Milliseconds; how much time will the sidebar take to go to align itself with the content','small-text');
+    '<b>Animate Speed</b> in Milliseconds; how much time will the sidebar take to go to align itself with the content','small-text');
     $data.=fsSettingsInput('offsetTop',$offsetTop,
     '<b>Offset Top</b>; lets you adjust settings for a pixel perfect result; accepts positive and negative values','small-text');
     $data.=fsSettingsInput('offsetBottom',$offsetBottom,
     '<b>Offset Bottom</b>','small-text');
     $data.=fsSettingsInput('minHDiff',$minHDiff,
-	'<b>Minimum Height Difference</b>; if (container height - sidebar height < minHDiff) then the plugin is not activated; if <i>dynamicTop</i> is checked, this option is not considered','small-text');
+    '<b>Minimum Height Difference</b>; if (container height - sidebar height < minHDiff) then the plugin is not activated; if <i>dynamicTop</i> is checked, this option is not considered','small-text');
+    $data.=fsSettingsInput('disableOnSmallerThan',$disableOnSmallerThan,
+    '<b>Disable plugin if the browsers is smaller than a specific width</b>; lets you disable the plugin if the browser is not wide enough to display a sidebar,','small-text');
     $data.='<tr><td><p class="submit"><input type="submit" name="Submit" class="button-primary" value="Save Changes" /></p></td></tr>';
     $data.='</table>';
     $data.='</form>';
