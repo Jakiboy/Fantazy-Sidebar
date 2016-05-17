@@ -17,7 +17,8 @@ if (typeof console === 'undefined') {
                 animate: 3000,
                 offsetTop: 0,
                 offsetBottom: 0,
-                minHDiff: 0
+                minHDiff: 0,
+                disableOnSmallerThan: 0
             }, opts);
 
             setTimeout(function() {
@@ -28,6 +29,11 @@ if (typeof console === 'undefined') {
                     $b = jQuery('body');
 
                 console.dir(opts);
+                if ($w.width() < opts.disableOnSmallerThan)
+                {
+                    console.log('The plugin is disabled, the current width ('+$w.width()+') is smaller than ' + opts.disableOnSmallerThan + '.');
+                    return;
+                }
 
                 if ($c.length && $ss.length) {
                     $ss.each(function() {
